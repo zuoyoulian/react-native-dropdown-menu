@@ -167,20 +167,26 @@ import PropTypes from 'prop-types';
 
     return (
       <View style={{flexDirection: 'column', flex: 1}} >
-        <View style={{flexDirection: 'row', backgroundColor: this.props.bgColor ? this.props.bgColor : this.defaultConfig.bgColor}} >
-
+        <View style={{flexDirection: 'row', backgroundColor: this.props.bgColor ? this.props.bgColor : this.defaultConfig.bgColor,borderBottomColor:'#ebebeb',borderBottomWidth:0.5}} >
           {
-            this.props.data.map((rows, index) =>
-              <TouchableOpacity
+            this.props.data.map((rows, index) => {
+              const showLine = index !== this.props.data.length - 1
+              return (
+                <TouchableOpacity
                 activeOpacity={1}
                 onPress={this.openOrClosePanel.bind(this, index)}
                 key={index}
                 style={{flex: 1, height: 40, alignItems: "center", justifyContent: "center"}} >
                 <View style={{flexDirection: 'row', alignItems: "center", justifyContent: "center"}} >
+                  <View style={{flex:1,height:13, alignItems: "center", justifyContent: "center"}}></View>
                   <Text style={{color: this.props.tintColor ? this.props.tintColor : this.defaultConfig.tintColor, fontSize: 13}} >{rows[this.state.selectIndex[index]]}</Text>
+                  <View style={{flex:1,height:13, alignItems: "center", justifyContent: "center"}}></View>
                   {this.renderDropDownArrow(index)}
+                  {showLine && <View style={{height:13,borderRightWidth:0.5,borderRightColor:'gray'}}></View>}
                 </View>
               </TouchableOpacity>
+              )
+            }
             )
           }
         </View>
