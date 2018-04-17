@@ -154,7 +154,7 @@ import PropTypes from 'prop-types';
     return (
       <Animated.Image
         source={icon}
-        style={{marginLeft: 8, transform: [{
+        style={{width:6,height:4, marginRight: 8, transform: [{
           rotateZ: this.state.rotationAnims[index].interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg']
